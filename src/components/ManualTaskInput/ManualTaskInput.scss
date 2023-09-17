@@ -1,0 +1,22 @@
+button.task-item {
+    width: 100%;
+    cursor: text;
+    border-radius: 0;
+    
+    .manual-task-input-textbox {
+        outline: none;
+        border: none;
+        border-color: transparent;
+        background-color: transparent;
+        font-size: 1em;
+        width: calc(100% - 8rem);
+    }
+
+    .task-input-mode {
+        width: 3rem;
+    }
+
+    &.isFocus {
+        background-color: #3b3b3b;
+    }
+}

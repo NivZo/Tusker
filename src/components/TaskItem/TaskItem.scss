@@ -1,0 +1,27 @@
+.task-item {
+    cursor: default;
+    text-align: start;
+    padding: 1rem;
+    border: 0.15rem #242424 solid;
+    background-color: #2b2b2b;
+
+    &:hover {
+        background-color: #3b3b3b;
+    }
+    
+
+    &.isFinished {
+        text-decoration: line-through;
+        color: darkgray;
+    }
+
+    .task-item-checkbox {
+        display: inline-flex;
+        width: 2rem;
+
+        input {
+            height: 1rem;
+            width: 1rem;
+        }
+    }
+}

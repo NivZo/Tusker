@@ -1,0 +1,15 @@
+#logo-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    h1 {
+        font-size: 3vh
+    }
+
+    #logo-img {
+        margin: 0;
+        height: 5rem;
+        width: 5rem;
+    }
+}

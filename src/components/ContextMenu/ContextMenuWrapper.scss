@@ -1,0 +1,40 @@
+nav {
+    position: absolute;
+
+    .navbar{ 
+        background-color: #333333;
+        border: 0.1rem #1b1b1b solid;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+            list-style-type: none;
+            display: flex;
+            
+            button {
+                span.context-menu-li-icon {
+                    width: 2rem;
+                }
+
+                span.context-menu-li-text {
+                    margin-left: 1rem;
+                }
+                
+                font: inherit;
+                text-align: start;
+                width: 100%;
+                border-radius: 0;
+                font-size: 1rem;
+                background-color: #1b1b1b;
+                justify-content: start;
+            }
+        
+            button:hover{
+                background-color: #313131;
+            }
+        }
+    }
+}
