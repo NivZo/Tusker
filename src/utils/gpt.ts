@@ -65,7 +65,7 @@ let rawBreakdownToTasks = (raw: string): Task[] => raw.split("\n")
         .filter((rawTask: string) => !!rawTask.trim())
         .map((rawTask: string): Task => ({
             title: rawTask,
-            state: "Created",
+            state: "In-Progress",
             tags: [],
         }));
 

@@ -10,7 +10,7 @@
     let isFocus: boolean = false;
     let isLoading: boolean = false;
     $: placeholder = (isSmartMode ? "Describe your tasks" : "Add a task\t\t") + 
-                    (isFocus ? "\t(Press Ctrl+Shift to toggle input mode)" : "")
+                    (isFocus ? "\t(Press Ctrl+Alt to toggle input mode)" : "")
 
     let submitInput = async (keyEvent: KeyboardEvent) => {
         if (keyEvent.key == "Enter" && inputValue.trim()) {
@@ -26,7 +26,7 @@
     };
 
     let toggleInputMode = (keyEvent: KeyboardEvent) => {
-        if (keyEvent.ctrlKey && keyEvent.shiftKey) {
+        if (keyEvent.ctrlKey && keyEvent.altKey) {
             keyEvent.preventDefault();
             isSmartMode = !isSmartMode;
         }

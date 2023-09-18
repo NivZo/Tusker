@@ -10,10 +10,10 @@ export type Task = {
 export type TaskDbEntry = Task & WithId;
 
 export type TaskState = 
-    "Created"
-    | "Comitted"
+    // "Created"
+    // | "Comitted"
     | "In-Progress"
-    | "Blocked"
-    | "Waiting"
+    // | "Blocked"
+    // | "Waiting"
     | "Finished"
     ;

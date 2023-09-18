@@ -29,13 +29,13 @@ const createTaskStore = () => {
         set,
         updateTask,
         toggleTaskState: (taskId: number, newState?: TaskState) => updateTask(taskId, (t: Task) => ({
-            ...t, state: newState ?? (t.state == "Finished" ? "Created" : "Finished"),
+            ...t, state: newState ?? (t.state == "Finished" ? "In-Progress" : "Finished"),
         })),
         addTask,
         addTasks: (tasks: Task[]) => { tasks.forEach(addTask) },
         addTaskByTitle: (title: string) => addTask({
             title,
-            state: "Created",
+            state: "In-Progress",
             tags: [],
         }),
         deleteTask: (taskId: number) => update(ts => ts.filter(task => task.id != taskId)),
