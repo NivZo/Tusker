@@ -6,7 +6,7 @@
     import type { ContextMenuItem } from "../../types/ContextMenuTypes";
     import { taskBreakdown } from "../../utils/gpt";
     import TaskItemTag from "../TaskItemTag/TaskItemTag.svelte";
-    import { createEventDispatcher } from "svelte";
+    import { sidePaneOptions } from "../../stores/SidePaneStore";
 
     export let task: TaskDbEntry;
 
@@ -35,7 +35,7 @@
                 tasks.deleteTask(task.id);
             },
             displayText: "Breakdown",
-            icon: "..",
+            icon: "☄",
             states: ["In-Progress"],
         },
         {
@@ -48,17 +48,10 @@
     ];
 
     $: isFinished = task.state == "Finished";
-
-    const dispatch = createEventDispatcher();
-    let openTaskSidePane = () => {
-        dispatch("togglesidepane", {
-            taskId: task.id,
-        })
-    }
 </script>
 
 <ContextMenuWrapper menuItems={menuItems.filter(mi => mi.states.includes(task.state))}>
-    <button class="task-item" class:isFinished on:click={openTaskSidePane}>
+    <button class="task-item" class:isFinished on:click={() => sidePaneOptions.toggleSidePane(task.id)}>
         <span class="task-item-checkbox">
             <input
                 type="checkbox"
@@ -67,10 +60,12 @@
             />
         </span>
         <span class="task-item-title">{task.title}</span>
+        {#if !$sidePaneOptions.isOpen}
         <span class="task-item-tags">
             {#each task.tags as tag}
                 <TaskItemTag value={tag}/>
             {/each}
         </span>
+        {/if}
     </button>
 </ContextMenuWrapper>

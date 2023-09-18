@@ -32,7 +32,7 @@
     {/if}
     {#if showTasks}
         {#each taskList as task (task.id)}
-            <TaskItem {task} on:togglesidepane />
+            <TaskItem {task} />
         {/each}
     {/if}
 </div>
