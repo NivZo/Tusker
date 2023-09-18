@@ -1,8 +1,5 @@
-// let uri = "https://chatgpt-api.shn.hk/v1/";
-
 import type { Task } from "../types/Task";
 
-// let token = "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";
 let uri = "https://api.ai21.com/studio/v1/j2-ultra/complete";
 let token = "OA6FRXUU6lln8U1jKldXZ2jtcyaplKl0";
 let promptPrefix = 
