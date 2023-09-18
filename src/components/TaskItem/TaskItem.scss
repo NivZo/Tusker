@@ -1,6 +1,10 @@
 .task-item {
     cursor: default;
+    display: inline-flex;
+    width: 100%; 
     text-align: start;
+    font: inherit;
+    height: 4rem;
     padding: 1rem;
     border: 0.15rem #242424 solid;
     background-color: #2b2b2b;
@@ -15,6 +19,10 @@
         color: darkgray;
     }
 
+    .task-item-title {
+        width: calc(90% - 2rem);
+    }
+
     .task-item-checkbox {
         display: inline-flex;
         width: 2rem;
@@ -23,5 +31,10 @@
             height: 1rem;
             width: 1rem;
         }
+    }
+
+    .task-item-tags {
+        width: 10%;
+        display: inline-flex;
     }
 }

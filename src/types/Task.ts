@@ -17,3 +17,7 @@ export type TaskState =
     // | "Waiting"
     | "Finished"
     ;
+
+export type TaskSidePaneCustomEventDetails = {
+    taskId: number;
+}

@@ -1,4 +1,12 @@
-main {
-    margin: 0 2.5%;
-    width: 95%;
+.app {
+    height: 100%;
+    display: inline-flex;
+    #main-panel {
+        margin: 0 2.5%;
+        float: left;
+    }
+
+    #task-side-pane {
+        float: right;
+    }
 }

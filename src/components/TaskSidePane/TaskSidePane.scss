@@ -1,0 +1,30 @@
+#task-side-pane {
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    #side-panel-container {
+        height: 100%;
+        width: calc(100% - 0.5rem);
+        background-color: #2b2b2b;
+        border: 0.25rem solid #2b2b2b;
+
+        hr {
+            border: 0.15rem solid #222222
+        }
+
+        #side-panel-title {
+            width: auto;
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            font-size: larger;
+        }
+
+        #side-panel-tags {
+            display: inline-flex;
+        }
+    }
+}

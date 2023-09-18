@@ -13,19 +13,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  background-color: #0f0f0f;
-  &:hover {
-    background-color: #141414;
+  html, body {
+    height: calc(100vh - 1rem);
+    margin: 0.5rem;
   }
 }

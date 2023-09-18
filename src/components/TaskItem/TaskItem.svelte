@@ -5,6 +5,8 @@
     import ContextMenuWrapper from "../ContextMenu/ContextMenuWrapper.svelte";
     import type { ContextMenuItem } from "../../types/ContextMenuTypes";
     import { taskBreakdown } from "../../utils/gpt";
+    import TaskItemTag from "../TaskItemTag/TaskItemTag.svelte";
+    import { createEventDispatcher } from "svelte";
 
     export let task: TaskDbEntry;
 
@@ -46,10 +48,17 @@
     ];
 
     $: isFinished = task.state == "Finished";
+
+    const dispatch = createEventDispatcher();
+    let openTaskSidePane = () => {
+        dispatch("togglesidepane", {
+            taskId: task.id,
+        })
+    }
 </script>
 
 <ContextMenuWrapper menuItems={menuItems.filter(mi => mi.states.includes(task.state))}>
-    <div class="task-item" class:isFinished>
+    <button class="task-item" class:isFinished on:click={openTaskSidePane}>
         <span class="task-item-checkbox">
             <input
                 type="checkbox"
@@ -58,5 +67,10 @@
             />
         </span>
         <span class="task-item-title">{task.title}</span>
-    </div>
+        <span class="task-item-tags">
+            {#each task.tags as tag}
+                <TaskItemTag value={tag}/>
+            {/each}
+        </span>
+    </button>
 </ContextMenuWrapper>

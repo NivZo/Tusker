@@ -1,7 +1,8 @@
 nav {
     position: absolute;
+    z-index: 1;
 
-    .navbar{ 
+    .navbar {
         background-color: #333333;
         border: 0.1rem #1b1b1b solid;
     }
@@ -13,8 +14,22 @@ nav {
         li {
             list-style-type: none;
             display: flex;
-            
+
             button {
+                border-radius: 8px;
+                border: 1px solid transparent;
+                padding: 0.6em 1.2em;
+                font-size: 1em;
+                font-weight: 500;
+                font-family: inherit;
+                cursor: pointer;
+                transition: border-color 0.25s;
+                background-color: #0f0f0f;
+
+                &:hover {
+                    background-color: #141414;
+                }
+
                 span.context-menu-li-icon {
                     width: 2rem;
                 }
@@ -22,7 +37,7 @@ nav {
                 span.context-menu-li-text {
                     margin-left: 1rem;
                 }
-                
+
                 font: inherit;
                 text-align: start;
                 width: 100%;
@@ -31,8 +46,8 @@ nav {
                 background-color: #1b1b1b;
                 justify-content: start;
             }
-        
-            button:hover{
+
+            button:hover {
                 background-color: #313131;
             }
         }
