@@ -2,12 +2,12 @@
     import "./TaskSidePane.scss";
     import { tasks } from "../../stores/TaskStore";
     import TaskItemTag from "../TaskItemTag/TaskItemTag.svelte";
-    import { sidePaneOptions } from "../../stores/SidePaneStore";
+    import { guiOptions } from "../../stores/GUIOptionsStore";
 
-    $: task = $sidePaneOptions.selectedTaskId != null ? $tasks[$sidePaneOptions.selectedTaskId] : null;
+    $: task = $guiOptions.sidePane.selectedTaskId != null ? $tasks[$guiOptions.sidePane.selectedTaskId] : null;
 </script>
 
-{#if $sidePaneOptions.isOpen && task != null}
+{#if $guiOptions.sidePane.isOpen && task != null}
     <div id="task-side-pane">
         <div id="side-panel-container">
             <span id="side-panel-title">{task.title}</span>
@@ -15,7 +15,7 @@
             <span id="side-panel-tags">
             {#if task.tags.length >= 0}
                 {#each task.tags as tag}
-                    <TaskItemTag value={tag}/>
+                    <TaskItemTag taskId={task.id} value={tag}/>
                 {/each}
             {/if}
             <input type="text" placeholder="Add tags"

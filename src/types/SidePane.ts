@@ -1,6 +1,11 @@
 import type { Nullable } from "./UtilTypes";
 
-export type SidePaneOptions = {
-    isOpen: boolean,
-    selectedTaskId: Nullable<number>,
+export type GUIOptions = {
+    sidePane: {
+        isOpen: boolean,
+        selectedTaskId: Nullable<number>,
+    },
+    contextMenu: {
+        isOpen: boolean,
+    }
 }

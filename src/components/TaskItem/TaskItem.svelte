@@ -6,7 +6,7 @@
     import type { ContextMenuItem } from "../../types/ContextMenuTypes";
     import { taskBreakdown } from "../../utils/gpt";
     import TaskItemTag from "../TaskItemTag/TaskItemTag.svelte";
-    import { sidePaneOptions } from "../../stores/SidePaneStore";
+    import { guiOptions } from "../../stores/GUIOptionsStore";
 
     export let task: TaskDbEntry;
 
@@ -51,7 +51,7 @@
 </script>
 
 <ContextMenuWrapper menuItems={menuItems.filter(mi => mi.states.includes(task.state))}>
-    <button class="task-item" class:isFinished on:click={() => sidePaneOptions.toggleSidePane(task.id)}>
+    <button class="task-item" class:isFinished on:click={() => guiOptions.toggleSidePane(task.id)}>
         <span class="task-item-checkbox">
             <input
                 type="checkbox"
@@ -60,10 +60,10 @@
             />
         </span>
         <span class="task-item-title">{task.title}</span>
-        {#if !$sidePaneOptions.isOpen}
+        {#if !$guiOptions.sidePane.isOpen}
         <span class="task-item-tags">
             {#each task.tags as tag}
-                <TaskItemTag value={tag}/>
+                <TaskItemTag taskId={task.id} value={tag}/>
             {/each}
         </span>
         {/if}

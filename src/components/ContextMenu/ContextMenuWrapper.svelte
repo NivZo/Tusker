@@ -2,6 +2,7 @@
     import "./ContextMenuWrapper.scss";
     import type { ContextMenuItem } from "../../types/ContextMenuTypes";
     import type { Nullable } from "../../types/UtilTypes";
+    import { guiOptions } from "../../stores/GUIOptionsStore";
 
     type Dimensions = {
         h: number,
@@ -15,6 +16,7 @@
     let menuDimensions: Dimensions = { h: 0, w: 0 }
     let browserDimensions: Dimensions = { h: 0, w: 0 }
     let showMenu: boolean = false;
+    $: guiOptions.updateContextMenu(showMenu);
 
     let rightClickContextMenu = (e: MouseEvent) => {
         showMenu = true
@@ -26,6 +28,8 @@
             x: e.clientX + document.documentElement.scrollLeft,
             y: e.clientY + document.documentElement.scrollTop,
         };
+
+        console.log(`x: ${e.clientX}, y: ${e.clientY}`)
 
         if (browserDimensions.h -  menuPosition.y < menuDimensions.h)
             menuPosition.y = menuPosition.y - menuDimensions.h
@@ -53,7 +57,7 @@
         }
     }
 
-    let closeContextMenuOnLeftClick = (_: MouseEvent) => {
+    let closeContextMenuOnLeftClick = () => {
         showMenu = false;
     }
 
@@ -71,7 +75,11 @@
     <div class="navbar" id="navbar">
         <ul>
             {#each menuItems as item}
-                <li><button on:click={item.onClick}>
+                <li><button on:click={event => {
+                    item.onClick();
+                    event.stopPropagation();
+                    closeContextMenuOnLeftClick();
+                }}>
                     <span class="context-menu-li-icon">{item.icon ? item.icon : ""}</span>
                     <span class="context-menu-li-text">{item.displayText}</span>
                 </button></li>
