@@ -1,6 +1,7 @@
-import { derived } from 'svelte/store';
+import { derived, type Readable } from 'svelte/store';
 import type { Task, TaskDbEntry, TaskState } from '../types/Task';
 import { storageWritable } from '../utils/localStorage';
+import type { Nullable } from '../types/UtilTypes';
 
 const localStorageKey = "tusker/tasks";
 const createTaskStore = () => {
@@ -45,6 +46,14 @@ const createTaskStore = () => {
 }
 
 export const tasks = createTaskStore();
+export const getTaskById: (taskId: number) => Readable<Nullable<TaskDbEntry>> = 
+    (taskId: number) => derived(
+        tasks,
+        $tasks => {
+            let task = $tasks.filter(task => task.id == taskId);
+            if (task.length == 1) { return task[0] }
+            return null;
+        })
 export const unfinishedTasks = derived(
     tasks,
     $tasks => $tasks.filter(task => task.state != "Finished"),

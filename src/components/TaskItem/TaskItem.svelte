@@ -31,7 +31,12 @@
         {
             name: "breakdownTask",
             onClick: async () => {
-                (await taskBreakdown(task.title)).forEach(tasks.addTask);
+                (await taskBreakdown(task.title))
+                .map(t => ({
+                    ...task,
+                    ...t,
+                }))
+                .forEach(tasks.addTask);
                 tasks.deleteTask(task.id);
             },
             displayText: "Breakdown",
