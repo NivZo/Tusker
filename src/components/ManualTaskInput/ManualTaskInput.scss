@@ -2,6 +2,7 @@ button.task-item {
     cursor: text;
     width: 100%;
     border-radius: 0;
+    display: flex;
     
     .manual-task-input-textbox {
         outline: none;
@@ -11,6 +12,7 @@ button.task-item {
         font-size: 1em;
         line-height: inherit;
         width: calc(100% - 8rem);
+        white-space: initial;
     }
 
     .task-input-mode {

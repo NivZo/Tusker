@@ -20,6 +20,7 @@ const createTaskStore = () => {
         task => {
             if (task.id == taskId) {
                 task = { id: taskId, ...action(getTaskById(ts, taskId)) };
+                console.log(task);
             }
             return task;
         }

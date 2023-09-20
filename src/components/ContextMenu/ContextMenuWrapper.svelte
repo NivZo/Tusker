@@ -90,9 +90,9 @@
 <svelte:window 
     on:click={closeContextMenuOnLeftClick}
     on:contextmenu={closeContextMenuOnRightClick} />
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <span
     bind:this={wrapper}
-    role="superscript"
     on:contextmenu|preventDefault={rightClickContextMenu}>
     <slot/>
 </span>

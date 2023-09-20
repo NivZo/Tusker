@@ -1,15 +1,16 @@
 <script lang="ts">
     import { tasks } from "../../stores/TaskStore";
+    import type { Nullable } from "../../types/UtilTypes";
     import ContextMenuWrapper from "../ContextMenu/ContextMenuWrapper.svelte";
 import "./TaskItemTag.scss";
 
     export let value: string;
-    export let taskId: number;
+    export let taskId: Nullable<number>;
 
-    let menuItems = [
+    let menuItems = taskId != null ? [
         {
             name: "deleteTag",
-            onClick: () => tasks.updateTask(taskId, task => ({
+            onClick: () => taskId != null && tasks.updateTask(taskId, task => ({
                 ...task,
                 tags: task.tags.filter(tag => tag != value),
             })),
@@ -17,7 +18,7 @@ import "./TaskItemTag.scss";
             icon: "X",
             states: ["In-Progress", "Finished"],
         },
-    ]
+    ] : [];
 </script>
 
 <ContextMenuWrapper {menuItems}>

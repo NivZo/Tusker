@@ -75,12 +75,16 @@
             />
         </span>
         <span class="task-item-title">{task.title}</span>
-        {#if !$guiOptions.sidePane.isOpen}
+        <!-- {#if !$guiOptions.sidePane.isOpen} -->
         <span class="task-item-tags">
-            {#each task.tags as tag}
-                <TaskItemTag taskId={task.id} value={tag}/>
-            {/each}
+            {#if task.tags.join(" ").length < ($guiOptions.sidePane.isOpen ? 10 : 25)}
+                {#each task.tags as tag}
+                    <TaskItemTag taskId={task.id} value={tag}/>
+                {/each}
+            {:else}
+                <TaskItemTag taskId={null} value={". . . ."}/>
+            {/if}
         </span>
-        {/if}
+        <!-- {/if} -->
     </button>
 </ContextMenuWrapper>

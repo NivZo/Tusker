@@ -20,7 +20,7 @@
     }
 
     .task-item-title {
-        width: calc(90% - 2rem);
+        flex-grow: 5;
     }
 
     .task-item-checkbox {
@@ -34,7 +34,10 @@
     }
 
     .task-item-tags {
-        width: 10%;
+        flex-grow: 1;
+        max-width: 20rem;
+        min-width: 10rem;
         display: inline-flex;
+        justify-content: end;
     }
 }
