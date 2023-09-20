@@ -29,8 +29,6 @@
             y: e.clientY + document.documentElement.scrollTop,
         };
 
-        console.log(`x: ${e.clientX}, y: ${e.clientY}`)
-
         if (browserDimensions.h -  menuPosition.y < menuDimensions.h)
             menuPosition.y = menuPosition.y - menuDimensions.h
         if (browserDimensions.w -  menuPosition.x < menuDimensions.w)

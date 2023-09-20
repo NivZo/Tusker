@@ -1,5 +1,6 @@
 <script lang="ts">
     import "./TaskItem.scss";
+    import DingAudio from "../../assets/audio/ding.mp3";
     import type { TaskDbEntry, TaskState } from "../../types/Task";
     import { tasks } from "../../stores/TaskStore";
     import ContextMenuWrapper from "../ContextMenu/ContextMenuWrapper.svelte";
@@ -9,6 +10,7 @@
     import { guiOptions } from "../../stores/GUIOptionsStore";
 
     export let task: TaskDbEntry;
+    let audio = new Audio(DingAudio);
 
     type StateDependentContextMenuItem = ContextMenuItem & {
         states: TaskState[];
@@ -53,15 +55,23 @@
     ];
 
     $: isFinished = task.state == "Finished";
+
+    let onCheck = (event: Event) => {
+        tasks.toggleTaskState(task.id);
+
+        if ((event?.target as HTMLInputElement).checked) {
+            audio.play();
+        }
+    }
 </script>
 
 <ContextMenuWrapper menuItems={menuItems.filter(mi => mi.states.includes(task.state))}>
     <button class="task-item" class:isFinished on:click={() => guiOptions.toggleSidePane(task.id)}>
         <span class="task-item-checkbox">
             <input
-                type="checkbox"
+                type=checkbox
                 bind:checked={isFinished}
-                on:click={() => tasks.toggleTaskState(task.id)}
+                on:click={onCheck}
             />
         </span>
         <span class="task-item-title">{task.title}</span>
