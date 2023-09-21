@@ -1,13 +1,14 @@
-import type { WithId } from "./DbTypes";
+import type { WithCreationDate, WithId } from "./DbTypes";
 
 export type Task = {
     title: string,
-    description?: string,
     state: TaskState,
     tags: string[],
+    description?: string,
+    dueDate?: number,
 };
 
-export type TaskDbEntry = Task & WithId;
+export type TaskDbEntry = Task & WithId & WithCreationDate;
 
 export type TaskState = 
     // "Created"

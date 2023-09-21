@@ -32,6 +32,13 @@ const createGUIOtionsStore = () => {
                 }
             }
         }),
+        closeSidePane: () => update(opts => ({
+            ...opts,
+            sidePane: {
+                isOpen: false,
+                selectedTaskId: null,
+            },
+        })),
         toggleContextMenu: () => update(opts => {
             return {
                 ...opts,

@@ -13,14 +13,17 @@ const createTaskStore = () => {
 
     let addTask = (task: Task) => update(ts => [
         ...ts,
-        { id: getNextKey(ts), ...task },
+        { 
+            id: getNextKey(ts),
+            creationDate: Date.now(),
+            ...task,
+         },
     ]);
 
     let updateTask = (taskId: number, action: (t: Task) => Task) => update(ts => ts.map(
         task => {
             if (task.id == taskId) {
-                task = { id: taskId, ...action(getTaskById(ts, taskId)) };
-                console.log(task);
+                task = { ...task, ...action(getTaskById(ts, taskId)) };
             }
             return task;
         }

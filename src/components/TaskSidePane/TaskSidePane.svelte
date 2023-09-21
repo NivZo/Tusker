@@ -4,6 +4,8 @@
     import TaskItemTag from "../TaskItemTag/TaskItemTag.svelte";
     import { guiOptions } from "../../stores/GUIOptionsStore";
     import { uniqueArray } from "../../utils/dataStructure";
+    import { formatDate } from "../../utils/datetime";
+    import DatePicker from "../DatePicker/DatePicker.svelte";
 
     $: task = $guiOptions.sidePane.selectedTaskId != null ? getTaskById($guiOptions.sidePane.selectedTaskId) : null;
 </script>
@@ -11,6 +13,7 @@
 {#if $guiOptions.sidePane.isOpen && $task != null}
     <div id="task-side-pane">
         <div id="side-panel-container">
+            <button id="side-panel-close" on:click={guiOptions.closeSidePane}>X</button>
             <span id="side-panel-title" class="side-panel-row">
                 <input type="text" placeholder="Task title"
                     value={$task.title}
@@ -44,6 +47,20 @@
                         ...t,
                         description: event.currentTarget.value,
                     }))} />
+            </span>
+            <hr/>
+            <span id="side-panel-dates" class="side-panel-row">
+                Creation date: {formatDate($task.creationDate)}
+                <br/>
+                <span class:pastDueDate={$task?.dueDate && $task.dueDate < Date.now()}>
+                    Due date: {$task?.dueDate ? formatDate($task.dueDate) : "not set"}
+                        <DatePicker onChange={event => {
+                            $task && tasks.updateTask($task.id, t => ({
+                                ...t,
+                                dueDate: Date.parse(event.currentTarget.value),
+                            }));
+                        }}/>
+                </span>
             </span>
             <hr/>
         </div>  
